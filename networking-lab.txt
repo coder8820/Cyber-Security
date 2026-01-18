@@ -1,0 +1,204 @@
+
+
+# 🧪 Wi-Fi Ethical Hacking & Security – Practical LAB Course
+
+## 🔰 LAB 0: Requirements (Day 1)
+
+### Hardware
+
+* ✅ Laptop (8GB RAM recommended)
+* ✅ External Wi-Fi Adapter
+  ✔ RTL8812AU / RTL8187 / RTL8811AU (monitor mode + packet injection)
+* ✅ Apna Wi-Fi Router
+* ✅ Test phone / laptop (client)
+
+### Software
+
+* Kali Linux (VMware / VirtualBox)
+* Windows host OS
+
+🎯 Goal: **Proper legal lab ready karna**
+
+---
+
+## 🟢 LAB 1: Kali Linux & Wireless Basics (Day 2–3)
+
+### Learn:
+
+* Kali Linux interface
+* Terminal basics
+* Root vs user
+* Wireless interfaces
+
+### Practice:
+
+* Check Wi-Fi adapter
+* Managed vs Monitor mode (concept)
+* iwconfig / ip a (understanding)
+
+🎯 Outcome: **Wireless environment samajh aa jaye**
+
+---
+
+## 🟢 LAB 2: Wi-Fi Scanning & Monitoring (Day 4–5)
+
+### Concepts:
+
+* SSID, BSSID
+* Channel hopping
+* Signal strength
+* Clients & AP relationship
+
+### Practice (Legal):
+
+* Scan **your own Wi-Fi**
+* Passive monitoring
+* Packet capture (no attack)
+
+🎯 Outcome: **Wi-Fi traffic read karna seekh lo**
+
+---
+
+## 🟡 LAB 3: Encryption & Handshake (Day 6–7)
+
+### Learn deeply:
+
+* WPA / WPA2 handshake kya hota hai
+* 4-way handshake flow
+* Why strong password matters
+
+### Practice:
+
+* Capture handshake of **your router**
+* Analyze packets
+* No brute force yet
+
+🎯 Outcome: **Real security weakness samajhna**
+
+---
+
+## 🟡 LAB 4: Password Security Testing (Day 8–10)
+
+### Concepts:
+
+* Weak vs strong passwords
+* Dictionary vs brute force
+* Password policies
+
+### Practice (Own Wi-Fi):
+
+* Test weak password
+* Observe time & risk
+* Learn why long passwords win
+
+🎯 Outcome: **Defense mindset develop hota hai**
+
+---
+
+## 🟠 LAB 5: WPS Security Testing (Day 11–12)
+
+### Learn:
+
+* WPS kya hota hai
+* PIN vulnerability
+* Why WPS dangerous
+
+### Practice:
+
+* Check if WPS enabled
+* Disable WPS
+* Verify security improvement
+
+🎯 Outcome: **Router hardening skills**
+
+---
+
+## 🔵 LAB 6: Blue Team – Wi-Fi Defense (Day 13–15)
+
+🔥 **MOST IMPORTANT FOR JOBS**
+
+### Learn:
+
+* Secure router configuration
+* WPA3 setup
+* Disable risky features
+* Firmware updates
+
+### Tools:
+
+* Wireshark (analysis)
+* Kismet (monitoring)
+* Logs & alerts
+
+🎯 Outcome: **SOC / Blue Team skills**
+
+---
+
+## 🔴 LAB 7: Evil Twin (Theory + Detection) (Day 16)
+
+⚠️ **Execution only theory**
+
+### Learn:
+
+* Evil Twin attack flow
+* How attackers trick users
+* How to detect & prevent
+
+### Defense:
+
+* Certificate checking
+* User awareness
+* IDS alerts
+
+🎯 Outcome: **Attack samajh kar defense**
+
+---
+
+## 🧠 LAB 8: Reporting & Professional Skills (Day 17–18)
+
+### Learn:
+
+* Security report writing
+* Risk rating
+* Recommendations
+* Legal & ethics
+
+🎯 Outcome: **Professional penetration tester mindset**
+
+---
+
+# 🎓 Certifications Path (Wi-Fi Focused)
+
+1️⃣ **CWNA** – Wireless fundamentals
+2️⃣ **CWSP** – Wireless security
+3️⃣ **CEH** – Ethical hacking
+4️⃣ **Security+** – Blue Team
+
+---
+
+# 💼 Job Roles After This Course
+
+* Wireless Security Analyst
+* Network Security Engineer
+* SOC Analyst (Blue Team)
+* Junior Penetration Tester
+
+💰 **Germany salary:** €3,500 – €6,500 / month
+💰 **Remote:** $2k – $5k+
+
+---
+
+## 🚨 Golden Rule
+
+❌ Random Wi-Fi hack = crime
+✅ Ethical testing + defense = career
+
+---
+
+### Next step options (aap choose karo):
+
+1️⃣ **Exact commands + screenshots roadmap**
+2️⃣ **Blue Team Wi-Fi only (SOC focused)**
+3️⃣ **Certification-wise study plan (CWNA → CEH)**
+
+Bas **1 / 2 / 3** likh do 🔥
