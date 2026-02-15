@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(135deg, #141e30, #243b55);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,51 +10,63 @@ body {
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 40px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    padding: 35px;
     border-radius: 15px;
-    width: 500px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    width: 550px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 5px;
 }
 
 .subtitle {
     text-align: center;
-    margin-bottom: 25px;
-    color: #ddd;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.top-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.guide-btn {
+    background: #ff9800;
+    color: white;
+}
+
+.example-btn {
+    background: #00c6ff;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.8;
 }
 
 .input-box {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 input {
     flex: 1;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 6px;
     border: none;
-    outline: none;
-}
-
-button {
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: none;
-    background-color: #00c6ff;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background-color: #0072ff;
 }
 
 .output-box {
@@ -62,11 +74,44 @@ button:hover {
     color: #00ff00;
     padding: 15px;
     border-radius: 8px;
-    min-height: 120px;
+    min-height: 130px;
     font-family: "Courier New", monospace;
     overflow-y: auto;
 }
 
 .default-text {
     color: gray;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+    background-color: #1e1e1e;
+    margin: auto;
+    padding: 25px;
+    border-radius: 10px;
+    width: 400px;
+    color: white;
+}
+
+.close {
+    float: right;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.note {
+    color: #00c6ff;
+    margin-top: 10px;
 }
