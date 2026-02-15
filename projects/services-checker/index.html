@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Windows Service Status Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Windows Service Query</h1>
+    <p class="subtitle">Simulate: <code>sc query termservice</code></p>
+
+    <div class="input-box">
+        <input type="text" id="serviceName" placeholder="Enter service name (e.g., termservice)">
+        <button onclick="checkService()">Query Service</button>
+    </div>
+
+    <div class="output-box" id="output">
+        <p class="default-text">Service output will appear here...</p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
