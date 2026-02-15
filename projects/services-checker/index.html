@@ -11,6 +11,12 @@
     <h1>Windows Service Query</h1>
     <p class="subtitle">Simulate: <code>sc query termservice</code></p>
 
+    <div class="top-buttons">
+        <button class="guide-btn" onclick="openGuide()">How to Use</button>
+        <button class="example-btn" onclick="fillExample('termservice')">Try TermService</button>
+        <button class="example-btn" onclick="fillExample('wuauserv')">Try Windows Update</button>
+    </div>
+
     <div class="input-box">
         <input type="text" id="serviceName" placeholder="Enter service name (e.g., termservice)">
         <button onclick="checkService()">Query Service</button>
@@ -18,6 +24,22 @@
 
     <div class="output-box" id="output">
         <p class="default-text">Service output will appear here...</p>
+    </div>
+</div>
+
+<!-- Demo Guide Modal -->
+<div class="modal" id="guideModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeGuide()">&times;</span>
+        <h2>How to Use This Tool</h2>
+        <ol>
+            <li>Enter the service name (example: <b>termservice</b>)</li>
+            <li>Click on <b>Query Service</b></li>
+            <li>View the service status in the black output box</li>
+            <li>If service exists → Status will show RUNNING or STOPPED</li>
+            <li>If not found → Error 1060 will appear</li>
+        </ol>
+        <p class="note">Tip: Use example buttons if you're new.</p>
     </div>
 </div>
 
