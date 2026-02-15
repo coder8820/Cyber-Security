@@ -2,44 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Windows Service Status Checker</title>
+    <title>SOC Service Monitor</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <h1>Windows Service Query</h1>
-    <p class="subtitle">Simulate: <code>sc query termservice</code></p>
+<header>
+    <h1>SOC Service Monitoring Dashboard</h1>
+    <div id="clock"></div>
+</header>
 
-    <div class="top-buttons">
-        <button class="guide-btn" onclick="openGuide()">How to Use</button>
-        <button class="example-btn" onclick="fillExample('termservice')">Try TermService</button>
-        <button class="example-btn" onclick="fillExample('wuauserv')">Try Windows Update</button>
-    </div>
+<div class="dashboard">
 
-    <div class="input-box">
+    <!-- Left Panel -->
+    <div class="panel control-panel">
+        <h2>Service Query</h2>
+
         <input type="text" id="serviceName" placeholder="Enter service name (e.g., termservice)">
-        <button onclick="checkService()">Query Service</button>
+        <button onclick="checkService()">Run Query</button>
+
+        <div class="quick-buttons">
+            <button onclick="fillExample('termservice')">TermService</button>
+            <button onclick="fillExample('wuauserv')">Windows Update</button>
+            <button onclick="fillExample('spooler')">Spooler</button>
+        </div>
+
+        <div id="statusCard" class="status-card">
+            <p>No Service Queried</p>
+        </div>
     </div>
 
-    <div class="output-box" id="output">
-        <p class="default-text">Service output will appear here...</p>
+    <!-- Right Panel -->
+    <div class="panel log-panel">
+        <h2>Activity Log</h2>
+        <div id="logBox" class="log-box"></div>
     </div>
+
 </div>
 
-<!-- Demo Guide Modal -->
-<div class="modal" id="guideModal">
+<!-- First Time Guide -->
+<div id="welcomeModal" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeGuide()">&times;</span>
-        <h2>How to Use This Tool</h2>
-        <ol>
-            <li>Enter the service name (example: <b>termservice</b>)</li>
-            <li>Click on <b>Query Service</b></li>
-            <li>View the service status in the black output box</li>
-            <li>If service exists → Status will show RUNNING or STOPPED</li>
-            <li>If not found → Error 1060 will appear</li>
-        </ol>
-        <p class="note">Tip: Use example buttons if you're new.</p>
+        <h2>Welcome to SOC Dashboard</h2>
+        <p>This tool simulates the Windows command:</p>
+        <code>sc query &lt;service_name&gt;</code>
+        <ul>
+            <li>Enter a service name</li>
+            <li>Click Run Query</li>
+            <li>Check status card & logs</li>
+        </ul>
+        <button onclick="closeWelcome()">Start Monitoring</button>
     </div>
 </div>
 
