@@ -7,7 +7,6 @@ function checkService() {
         return;
     }
 
-    // Simulated services database
     const services = {
         "termservice": {
             displayName: "Remote Desktop Services",
@@ -33,14 +32,8 @@ function checkService() {
 SERVICE_NAME: ${serviceName}
 DISPLAY_NAME: ${service.displayName}
 
-        TYPE               : 20  WIN32_SHARE_PROCESS
-        STATE              : 4  ${service.state}
-                                (STOPPABLE, PAUSABLE, ACCEPTS_SHUTDOWN)
-        WIN32_EXIT_CODE    : 0  (0x0)
-        SERVICE_EXIT_CODE  : 0  (0x0)
-        CHECKPOINT         : 0x0
-        WAIT_HINT          : 0x0
-        PID                : ${service.pid}
+STATE              : ${service.state}
+PID                : ${service.pid}
 `;
     } else {
         output.innerHTML = `
@@ -49,4 +42,17 @@ DISPLAY_NAME: ${service.displayName}
 The specified service does not exist as an installed service.
 `;
     }
+}
+
+function fillExample(service) {
+    document.getElementById("serviceName").value = service;
+    checkService();
+}
+
+function openGuide() {
+    document.getElementById("guideModal").style.display = "block";
+}
+
+function closeGuide() {
+    document.getElementById("guideModal").style.display = "none";
 }
