@@ -1,58 +1,54 @@
+const services = {
+    "termservice": { displayName: "Remote Desktop Services", state: "RUNNING", pid: 1204 },
+    "wuauserv": { displayName: "Windows Update", state: "STOPPED", pid: 0 },
+    "spooler": { displayName: "Print Spooler", state: "RUNNING", pid: 942 }
+};
+
+function updateClock() {
+    const now = new Date();
+    document.getElementById("clock").innerText = now.toLocaleString();
+}
+setInterval(updateClock, 1000);
+updateClock();
+
 function checkService() {
-    const serviceName = document.getElementById("serviceName").value.trim().toLowerCase();
-    const output = document.getElementById("output");
+    const name = document.getElementById("serviceName").value.trim().toLowerCase();
+    const statusCard = document.getElementById("statusCard");
+    const logBox = document.getElementById("logBox");
 
-    if (serviceName === "") {
-        output.innerHTML = "<p style='color:red;'>Please enter a service name.</p>";
-        return;
-    }
+    if (!name) return;
 
-    const services = {
-        "termservice": {
-            displayName: "Remote Desktop Services",
-            state: "RUNNING",
-            pid: 1204
-        },
-        "wuauserv": {
-            displayName: "Windows Update",
-            state: "STOPPED",
-            pid: 0
-        },
-        "spooler": {
-            displayName: "Print Spooler",
-            state: "RUNNING",
-            pid: 942
+    logBox.innerHTML += `[${new Date().toLocaleTimeString()}] Querying ${name}...\n`;
+
+    setTimeout(() => {
+        if (services[name]) {
+            const service = services[name];
+
+            statusCard.className = "status-card";
+            statusCard.classList.add(service.state === "RUNNING" ? "status-running" : "status-stopped");
+
+            statusCard.innerHTML = `
+                <h3>${service.displayName}</h3>
+                <p>Status: ${service.state}</p>
+                <p>PID: ${service.pid}</p>
+            `;
+
+            logBox.innerHTML += `Service ${name} is ${service.state}\n\n`;
+        } else {
+            statusCard.className = "status-card status-unknown";
+            statusCard.innerHTML = `<p>Service Not Found</p>`;
+            logBox.innerHTML += `Error 1060: Service not found\n\n`;
         }
-    };
 
-    if (services[serviceName]) {
-        const service = services[serviceName];
-
-        output.innerHTML = `
-SERVICE_NAME: ${serviceName}
-DISPLAY_NAME: ${service.displayName}
-
-STATE              : ${service.state}
-PID                : ${service.pid}
-`;
-    } else {
-        output.innerHTML = `
-[SC] OpenService FAILED 1060:
-
-The specified service does not exist as an installed service.
-`;
-    }
+        logBox.scrollTop = logBox.scrollHeight;
+    }, 800);
 }
 
-function fillExample(service) {
-    document.getElementById("serviceName").value = service;
+function fillExample(name) {
+    document.getElementById("serviceName").value = name;
     checkService();
 }
 
-function openGuide() {
-    document.getElementById("guideModal").style.display = "block";
-}
-
-function closeGuide() {
-    document.getElementById("guideModal").style.display = "none";
+function closeWelcome() {
+    document.getElementById("welcomeModal").style.display = "none";
 }
