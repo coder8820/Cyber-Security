@@ -1,37 +1,10 @@
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: Arial, sans-serif;
     background: #0f172a;
-    color: #e2e8f0;
+    color: white;
 }
 
-.hidden { display: none; }
-
-/* Login */
-.center-screen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.login-card {
-    background: #1e293b;
-    padding: 30px;
-    border-radius: 10px;
-    width: 300px;
-    text-align: center;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 6px;
-    border: none;
-}
-
-/* Header */
 header {
     background: #111827;
     padding: 15px 20px;
@@ -39,29 +12,24 @@ header {
     justify-content: space-between;
 }
 
-/* Layout */
 .layout {
     display: flex;
     height: calc(100vh - 70px);
 }
 
-/* Sidebar fixed */
 .sidebar {
-    width: 230px;
-    background: #111827;
+    width: 220px;
+    background: #1e293b;
     padding: 20px;
-    position: fixed;
-    height: 100%;
 }
 
 .sidebar button {
     width: 100%;
     margin-bottom: 10px;
-    padding: 8px;
+    padding: 10px;
     background: #334155;
     border: none;
     color: white;
-    border-radius: 6px;
     cursor: pointer;
 }
 
@@ -69,55 +37,60 @@ header {
     background: #2563eb;
 }
 
-/* Main */
 main {
-    margin-left: 250px;
-    padding: 20px;
     flex: 1;
+    padding: 20px;
     overflow-y: auto;
 }
 
-.content-section {
-    margin-top: 20px;
+.filter-bar input {
+    width: 300px;
+    padding: 8px;
+    margin-bottom: 20px;
 }
 
-/* Command Cards */
 .command-card {
     background: #1e293b;
     padding: 15px;
     margin-bottom: 12px;
-    border-radius: 10px;
-    cursor: pointer;
+    border-radius: 8px;
 }
 
-.command-card h4 {
-    margin: 0;
+.command-title {
+    font-weight: bold;
+    font-size: 16px;
 }
 
-.command-details {
-    margin-top: 10px;
-    font-size: 14px;
-    display: none;
-}
-
-.code {
+.command-code {
     background: black;
     color: #22c55e;
     padding: 8px;
-    border-radius: 5px;
-    font-family: monospace;
     margin-top: 8px;
+    font-family: monospace;
 }
 
-/* Quiz */
-.quiz-question {
-    margin-bottom: 20px;
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.reward {
-    background: #22c55e;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 15px;
-    font-weight: bold;
+.login-container {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 8px 12px;
+    cursor: pointer;
 }
