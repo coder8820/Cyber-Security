@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Team Academy - Login & Register</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1e293b;
+            --accent-color: #3b82f6;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+        }
+
+        body.light-theme {
+            --primary-bg: #ffffff;
+            --secondary-bg: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+        }
+
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        body.light-theme .auth-container {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .auth-left {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .auth-branding {
+            color: var(--text-primary);
+            max-width: 400px;
+        }
+
+        .auth-branding h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .auth-branding p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .feature-list span {
+            font-size: 24px;
+        }
+
+        .feature-list strong {
+            color: var(--text-primary);
+        }
+
+        .feature-list p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .auth-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .auth-box {
+            background: var(--secondary-bg);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            padding: 50px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 6px;
+            border-radius: 10px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .auth-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .auth-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background: rgba(59, 130, 246, 0.05);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(203, 213, 225, 0.5);
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            transition: all 0.3s ease;
+            width: 0%;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border: none;
+            color: white;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .form-footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .demo-accounts {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 3px solid var(--success-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .demo-accounts strong {
+            color: var(--success-color);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .demo-account {
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 13px;
+        }
+
+        .message.success {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success-color);
+            border-left: 3px solid var(--success-color);
+            display: block;
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger-color);
+            border-left: 3px solid var(--danger-color);
+            display: block;
+        }
+
+        .theme-toggle-auth {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            color: var(--accent-color);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-auth:hover {
+            background: rgba(59, 130, 246, 0.3);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 1024px) {
+            .auth-container {
+                flex-direction: column;
+            }
+
+            .auth-left {
+                padding: 40px 20px;
+            }
+
+            .auth-branding h1 {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .auth-box {
+                padding: 30px 20px;
+            }
+
+            .auth-branding h1 {
+                font-size: 28px;
+            }
+
+            .auth-left {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle-auth" onclick="toggleAuthTheme()">🌙</button>
+
+    <div class="auth-container">
+        <!-- Left Side - Branding -->
+        <div class="auth-left">
+            <div class="auth-branding">
+                <h1>🛡️ Blue Team</h1>
+                <p>Master PowerShell, CMD, and advanced SOC operations. Join thousands of security professionals on their journey to excellence.</p>
+                
+                <ul class="feature-list">
+                    <li>
+                        <span>📚</span>
+                        <div>
+                            <strong>9 In-Depth Courses</strong>
+                            <p>From basics to advanced threat hunting</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>🔬</span>
+                        <div>
+                            <strong>Hands-On Labs</strong>
+                            <p>Real-world scenarios and challenges</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>🏆</span>
+                        <div>
+                            <strong>Certificates</strong>
+                            <p>Prove your expertise</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>📊</span>
+                        <div>
+                            <strong>Analytics</strong>
+                            <p>Track your progress</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Side - Auth Forms -->
+        <div class="auth-right">
+            <div class="auth-box">
+                <!-- Tabs -->
+                <div class="auth-tabs">
+                    <button class="tab-btn active" onclick="switchTab('login')">Login</button>
+                    <button class="tab-btn" onclick="switchTab('register')">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <div id="login-form" class="form-section active">
+                    <h2 class="auth-title">Welcome Back</h2>
+                    <p class="auth-subtitle">Enter your credentials to access the academy</p>
+
+                    <div class="demo-accounts">
+                        <strong>Demo Accounts:</strong>
+                        <div class="demo-account">👨‍💼 admin / admin123</div>
+                        <div class="demo-account">👨‍💻 analyst / analyst123</div>
+                        <div class="demo-account">👨‍🎓 student / student123</div>
+                    </div>
+
+                    <div id="login-message" class="message"></div>
+
+                    <form onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label>Username or Email</label>
+                            <input type="text" id="login-username" placeholder="Enter your username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="login-password" placeholder="Enter your password" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Sign In</button>
+                    </form>
+
+                    <div class="form-footer">
+                        Don't have an account? <a onclick="switchTab('register')">Register now</a>
+                    </div>
+                </div>
+
+                <!-- Register Form -->
+                <div id="register-form" class="form-section">
+                    <h2 class="auth-title">Create Account</h2>
+                    <p class="auth-subtitle">Join our security community today</p>
+
+                    <div id="register-message" class="message"></div>
+
+                    <form onsubmit="handleRegister(event)">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" id="register-username" placeholder="Choose a username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="register-email" placeholder="your@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="register-password" placeholder="Strong password required" 
+                                   oninput="checkPasswordStrength(this.value)" required>
+                            <div class="password-strength">
+                                <div class="password-strength-bar" id="strength-bar"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" id="register-confirm" placeholder="Re-enter password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Role</label>
+                            <select id="register-role" required>
+                                <option value="">Select your role...</option>
+                                <option value="Student">Student</option>
+                                <option value="SOC Analyst">SOC Analyst</option>
+                                <option value="Instructor">Instructor</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Create Account</button>
+                    </form>
+
+                    <div class="form-footer">
+                        Already have an account? <a onclick="switchTab('login')">Sign in here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth-system.js"></script>
+    <script>
+        // Tab switching
+        function switchTab(tab) {
+            document.querySelectorAll('.form-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tab + '-form').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Handle Login
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            const messageDiv = document.getElementById('login-message');
+
+            const result = authSystem.login(username, password);
+            
+            if (result.success) {
+                messageDiv.className = 'message success';
+                messageDiv.textContent = '✓ ' + result.message;
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            } else {
+                messageDiv.className = 'message error';
+                messageDiv.textContent = '✗ ' + result.message;
+            }
+        }
+
+        // Handle Register
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('register-username').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirm = document.getElementById('register-confirm').value;
+            const role = document.getElementById('register-role').value;
+            const messageDiv = document.getElementById('register-message');
+
+            const result = authSystem.register(username, email, password, confirm, role);
+            
+            if (result.success) {
+                messageDiv.className = 'message success';
+                messageDiv.textContent = '✓ ' + result.message + ' Redirecting...';
+                setTimeout(() => {
+                    authSystem.login(username, password);
+                    window.location.href = 'dashboard.html';
+                }, 2000);
+            } else {
+                messageDiv.className = 'message error';
+                messageDiv.textContent = '✗ ' + result.message;
+            }
+        }
+
+        // Password strength checker
+        function checkPasswordStrength(password) {
+            let strength = 0;
+            const bar = document.getElementById('strength-bar');
+            
+            if (password.length >= 6) strength++;
+            if (password.length >= 10) strength++;
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+
+            const percentage = (strength / 5) * 100;
+            bar.style.width = percentage + '%';
+            bar.style.background = percentage < 40 ? '#ef4444' : percentage < 70 ? '#f59e0b' : '#10b981';
+        }
+
+        // Theme toggle for auth page
+        function toggleAuthTheme() {
+            const html = document.documentElement;
+            const isDark = !html.classList.contains('light-theme');
+            
+            if (isDark) {
+                html.classList.add('light-theme');
+                document.body.classList.add('light-theme');
+                localStorage.setItem('theme', 'light');
+                document.querySelector('.theme-toggle-auth').textContent = '🌙';
+            } else {
+                html.classList.remove('light-theme');
+                document.body.classList.remove('light-theme');
+                localStorage.setItem('theme', 'dark');
+                document.querySelector('.theme-toggle-auth').textContent = '☀️';
+            }
+        }
+
+        // Initialize theme on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.documentElement.classList.add('light-theme');
+                document.body.classList.add('light-theme');
+                document.querySelector('.theme-toggle-auth').textContent = '🌙';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -2,9 +2,14 @@
 
 // Check if user is logged in
 function checkLogin() {
-    const user = localStorage.getItem('currentUser');
-    if (!user && !window.location.pathname.includes('index.html')) {
-        window.location.href = 'index.html';
+    const authToken = localStorage.getItem('authToken');
+    const currentUser = localStorage.getItem('currentUser');
+    
+    // If not logged in and not on login/register pages, redirect
+    if ((!authToken || !currentUser) && 
+        !window.location.href.includes('login.html') && 
+        !window.location.href.includes('index.html')) {
+        window.location.href = 'login.html';
     }
 }
 
@@ -61,7 +66,8 @@ function showNotification(message, type = 'info') {
 function logout() {
     if (confirm('Are you sure you want to logout?')) {
         localStorage.removeItem('currentUser');
-        window.location.href = 'index.html';
+        localStorage.removeItem('authToken');
+        window.location.href = 'login.html';
     }
 }
 
