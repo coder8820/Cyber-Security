@@ -27,19 +27,19 @@
 
 <div class="layout">
 
-<aside>
+<aside class="sidebar">
     <h3>Curriculum</h3>
-    <button onclick="showSection('cmd')">CMD Commands</button>
+    <button onclick="showSection('cmd')">CMD</button>
     <button onclick="showSection('ps')">PowerShell</button>
-    <button onclick="showSection('scenarios')">SOC Scenarios</button>
+    <button onclick="showSection('scenarios')">Scenarios</button>
     <button onclick="showSection('quiz')">Final Quiz</button>
 </aside>
 
 <main>
 
-<section id="cmd" class="section"></section>
-<section id="ps" class="section hidden"></section>
-<section id="scenarios" class="section hidden"></section>
+<section id="cmd" class="section scrollable"></section>
+<section id="ps" class="section hidden scrollable"></section>
+<section id="scenarios" class="section hidden scrollable"></section>
 <section id="quiz" class="section hidden"></section>
 
 </main>

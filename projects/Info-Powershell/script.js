@@ -1,136 +1,102 @@
-let currentUser = "";
 let score = 0;
 
-/* ================= LOGIN ================= */
-
+/* LOGIN */
 function login() {
     const user = document.getElementById("username").value;
-    const role = document.getElementById("role").value;
-
     if (!user) return alert("Enter username");
 
-    currentUser = user + " (" + role + ")";
     document.getElementById("loginPage").classList.add("hidden");
     document.getElementById("mainApp").classList.remove("hidden");
-    document.getElementById("userInfo").innerText = currentUser;
+    document.getElementById("userInfo").innerText = "Welcome, " + user;
 
     loadCommands();
     loadScenarios();
     loadQuiz();
 }
 
-/* ================= 100+ COMMANDS ================= */
-
-const cmdCommands = [
+/* COMMANDS */
+const commands = [
 "ipconfig","ping","tracert","netstat","tasklist","taskkill","systeminfo",
 "hostname","whoami","net user","net localgroup","dir","cd","type","findstr",
-"shutdown","sc query","sc stop","sc start","wmic","arp","route","nslookup",
-"net view","net share","net session","net file","net use","at","schtasks",
-"cipher","driverquery","eventcreate","fc","gpresult","label","logoff",
-"move","pathping","powercfg","print","query user","reg","robocopy",
-"runas","set","setx","subst","tree","ver","vol"
-];
-
-const psCommands = [
-"Get-Process","Stop-Process","Get-Service","Restart-Service","Get-EventLog",
-"Get-WinEvent","Get-Command","Get-Help","Get-LocalUser","Get-LocalGroup",
-"Test-Connection","Get-NetIPAddress","Get-NetTCPConnection","Set-ExecutionPolicy",
-"Get-ExecutionPolicy","Start-Process","Invoke-Command","Get-ChildItem",
-"Set-Item","New-Item","Remove-Item","Get-History","Clear-History",
-"Get-ComputerInfo","Get-Content","Select-String","Export-CSV","Import-CSV",
-"Out-File","Where-Object","ForEach-Object","Measure-Object","Sort-Object",
-"Get-ADUser","Get-ADComputer","Get-FileHash","Compare-Object","Start-Service",
-"Stop-Service","Get-ScheduledTask","Disable-LocalUser","Enable-LocalUser",
-"Get-Clipboard","Clear-EventLog","Write-EventLog","Get-ItemProperty"
+"shutdown","sc query","wmic","arp","route","nslookup","Get-Process",
+"Get-Service","Get-EventLog","Get-WinEvent","Get-LocalUser","Test-Connection",
+"Get-NetTCPConnection","Start-Process","Invoke-Command","Get-Content"
 ];
 
 function loadCommands() {
-    const cmdSection = document.getElementById("cmd");
-    const psSection = document.getElementById("ps");
+    document.getElementById("cmd").innerHTML = "<h2>CMD Commands</h2>";
+    document.getElementById("ps").innerHTML = "<h2>PowerShell Commands</h2>";
 
-    cmdSection.innerHTML = "<h2>CMD Commands (50+)</h2>";
-    psSection.innerHTML = "<h2>PowerShell Commands (50+)</h2>";
-
-    cmdCommands.forEach(cmd => {
-        cmdSection.innerHTML += `
+    commands.forEach(cmd => {
+        document.getElementById("cmd").innerHTML += `
         <div class="command-card">
-            <strong>${cmd}</strong>
-            <p>${cmd} is used in SOC operations for monitoring, incident response, and system investigation.</p>
-            <div class="code">${cmd}</div>
-            <p><b>SOC Use Case:</b> Used during security investigation and system auditing.</p>
-        </div>`;
-    });
-
-    psCommands.forEach(ps => {
-        psSection.innerHTML += `
-        <div class="command-card">
-            <strong>${ps}</strong>
-            <p>${ps} is a powerful PowerShell cmdlet used for automation, threat hunting, and forensic analysis.</p>
-            <div class="code">${ps}</div>
-            <p><b>SOC Use Case:</b> Used for advanced monitoring and threat detection.</p>
+        <strong>${cmd}</strong>
+        <p>${cmd} is used in security monitoring, threat detection, and forensic investigations in SOC.</p>
+        <div class="code">${cmd}</div>
         </div>`;
     });
 }
 
-/* ================= SOC SCENARIOS ================= */
-
+/* SCENARIOS */
 function loadScenarios() {
-    const section = document.getElementById("scenarios");
-
-    const scenarios = [
-    {q:"Suspicious outbound connection detected",a:"Use netstat -ano and tasklist"},
-    {q:"Unknown service started automatically",a:"Use sc query and Get-Service"},
-    {q:"Multiple failed login attempts",a:"Use Get-EventLog -LogName Security"},
-    {q:"High CPU usage reported",a:"Use tasklist or Get-Process"},
-    {q:"New local user created unexpectedly",a:"Use net user or Get-LocalUser"},
-    {q:"Malware persistence suspected",a:"Check scheduled tasks with schtasks"},
-    {q:"Encrypted files discovered",a:"Use cipher to investigate encryption"},
-    {q:"Suspicious PowerShell execution",a:"Review Event Logs using Get-WinEvent"}
-    ];
-
-    section.innerHTML = "<h2>Real SOC Scenarios</h2>";
-
-    scenarios.forEach(s => {
-        section.innerHTML += `
-        <div class="command-card">
-            <strong>Scenario:</strong> ${s.q}
-            <p><b>Solution:</b> ${s.a}</p>
-        </div>`;
-    });
-}
-
-/* ================= QUIZ + SCORE TRACKING ================= */
-
-function loadQuiz() {
-    const section = document.getElementById("quiz");
-    section.innerHTML = `
-    <h2>Final Knowledge Test</h2>
-
-    <p>Which command checks active network connections?</p>
-    <button onclick="answerQuiz('netstat')">netstat</button>
-    <button onclick="answerQuiz('ipconfig')">ipconfig</button>
-    <button onclick="answerQuiz('dir')">dir</button>
-
-    <p id="quizResult"></p>
-    <p id="scoreBoard"></p>
+    document.getElementById("scenarios").innerHTML = `
+    <h2>SOC Real Scenarios</h2>
+    <div class="command-card">
+    Suspicious network traffic detected → Use netstat -ano
+    </div>
+    <div class="command-card">
+    Unknown service running → Use sc query
+    </div>
     `;
 }
 
-function answerQuiz(answer) {
-    if (answer === "netstat") {
-        score++;
-        document.getElementById("quizResult").innerHTML = "✅ Correct!";
-    } else {
-        document.getElementById("quizResult").innerHTML = "❌ Incorrect!";
-    }
+/* QUIZ */
+const quizQuestions = [
+{q:"Which command shows active connections?",a:"netstat"},
+{q:"Which command lists services?",a:"Get-Service"},
+{q:"Which command shows IP config?",a:"ipconfig"},
+{q:"Which retrieves event logs?",a:"Get-EventLog"},
+{q:"Which lists processes?",a:"tasklist"},
+{q:"Which stops a process?",a:"Stop-Process"},
+{q:"Which tests network connectivity?",a:"Test-Connection"},
+{q:"Which shows current user?",a:"whoami"},
+{q:"Which checks services (CMD)?",a:"sc query"},
+{q:"Which gets TCP connections?",a:"Get-NetTCPConnection"}
+];
 
-    localStorage.setItem("socScore", score);
-    document.getElementById("scoreBoard").innerHTML =
-        "Your Score: " + localStorage.getItem("socScore");
+function loadQuiz() {
+    let html = "<h2>Final Knowledge Test</h2>";
+    quizQuestions.forEach((item, index) => {
+        html += `
+        <div class="command-card">
+        <p>${index+1}. ${item.q}</p>
+        <input type="text" id="q${index}">
+        </div>`;
+    });
+    html += `<button onclick="submitQuiz()">Submit Quiz</button>
+    <div id="quizResult"></div>`;
+    document.getElementById("quiz").innerHTML = html;
 }
 
-/* ================= NAVIGATION ================= */
+function submitQuiz() {
+    score = 0;
+    quizQuestions.forEach((item, index) => {
+        const ans = document.getElementById("q"+index).value.trim();
+        if (ans.toLowerCase() === item.a.toLowerCase()) score++;
+    });
 
+    let result = `Your Score: ${score}/10`;
+
+    if (score >= 4) {
+        result += `<div class="reward">🎉 Great Job! You earned a Blue Team Star Reward!</div>`;
+    } else {
+        result += `<p>Keep practicing! You can improve 💪</p>`;
+    }
+
+    document.getElementById("quizResult").innerHTML = result;
+}
+
+/* NAVIGATION */
 function showSection(id) {
     document.querySelectorAll(".section").forEach(sec => sec.classList.add("hidden"));
     document.getElementById(id).classList.remove("hidden");
