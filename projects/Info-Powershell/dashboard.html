@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SOC Enterprise Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h2>SOC Enterprise Training</h2>
+    <div>
+        <span id="userInfo"></span>
+        <button onclick="logout()">Logout</button>
+    </div>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+    <h3>Modules</h3>
+    <button onclick="showSection('network')">Network</button>
+    <button onclick="showSection('process')">Process</button>
+    <button onclick="showSection('logs')">Logs</button>
+    <button onclick="showSection('services')">Services</button>
+</aside>
+
+<main>
+
+<div class="filter-bar">
+    <input type="text" id="searchInput" placeholder="Search command...">
+</div>
+
+<section id="contentArea"></section>
+
+</main>
+</div>
+
+<script src="auth.js"></script>
+<script src="data.js"></script>
+<script src="dashboard.js"></script>
+
+</body>
+</html>
