@@ -3,83 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blue Team SOC Command Academy</title>
+<title>Blue Team SOC Academy Pro</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
+<div id="loginPage" class="center">
+    <h2>Blue Team SOC Academy</h2>
+    <input type="text" id="username" placeholder="Enter Username">
+    <select id="role">
+        <option value="Analyst">SOC Analyst</option>
+        <option value="Student">Student</option>
+    </select>
+    <button onclick="login()">Login</button>
+</div>
+
+<div id="mainApp" class="hidden">
+
 <header>
-    <h1>Blue Team SOC Command Academy</h1>
-    <p>PowerShell & CMD for Security Operations Center Analysts</p>
+    <h1>Blue Team SOC Command Curriculum</h1>
+    <div id="userInfo"></div>
 </header>
 
-<div class="container">
+<div class="layout">
 
-<aside class="sidebar">
-    <h3>Navigation</h3>
-    <a href="#cmd">CMD Commands</a>
-    <a href="#powershell">PowerShell Commands</a>
-    <a href="#scenario">Incident Scenario</a>
-    <button onclick="showQuiz()">Check Knowledge</button>
+<aside>
+    <h3>Curriculum</h3>
+    <button onclick="showSection('cmd')">CMD Commands</button>
+    <button onclick="showSection('ps')">PowerShell</button>
+    <button onclick="showSection('scenarios')">SOC Scenarios</button>
+    <button onclick="showSection('quiz')">Final Quiz</button>
 </aside>
 
-<main class="content">
+<main>
 
-<input type="text" id="search" placeholder="Search command..." onkeyup="searchCommands()">
-
-<section id="cmd">
-<h2>Command Prompt (CMD)</h2>
-<p class="description">
-Command Prompt is used for basic system administration, network diagnostics,
-and incident response tasks in a SOC environment.
-</p>
-<div id="cmdCommands"></div>
-</section>
-
-<section id="powershell">
-<h2>PowerShell</h2>
-<p class="description">
-PowerShell is an advanced scripting and automation tool used heavily in
-Blue Team monitoring, threat hunting, and forensic analysis.
-</p>
-<div id="psCommands"></div>
-</section>
-
-<section id="scenario">
-<h2>Incident Response Scenario</h2>
-<div class="scenario-box">
-<p><strong>Scenario:</strong></p>
-<p>A user reports that their system is slow and unknown network activity is detected.
-You suspect a malicious reverse shell connection.</p>
-
-<p><strong>Question:</strong> Which command should you run first to detect suspicious connections?</p>
-
-<button onclick="showSolution()">Show Solution</button>
-
-<div id="solution" class="hidden">
-<p><strong>Answer:</strong> netstat -ano</p>
-<p>This command shows active connections and associated PIDs.
-You can match the PID with tasklist to identify the malicious process.</p>
-</div>
-</div>
-</section>
-
-<section id="quizSection" class="hidden">
-<h2>SOC Knowledge Quiz</h2>
-
-<p>Which PowerShell command retrieves Windows event logs?</p>
-
-<label><input type="radio" name="quiz" value="1"> Get-Service</label><br>
-<label><input type="radio" name="quiz" value="2"> Get-EventLog</label><br>
-<label><input type="radio" name="quiz" value="3"> Get-Process</label><br><br>
-
-<button onclick="checkQuiz()">Submit Answer</button>
-
-<p id="quizResult"></p>
-</section>
+<section id="cmd" class="section"></section>
+<section id="ps" class="section hidden"></section>
+<section id="scenarios" class="section hidden"></section>
+<section id="quiz" class="section hidden"></section>
 
 </main>
+</div>
 </div>
 
 <script src="script.js"></script>
