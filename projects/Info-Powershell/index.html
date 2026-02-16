@@ -1,24 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>SOC Enterprise Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOC Blue Team Academy - PowerShell & CMD Mastery</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="login-body">
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo-section">
+                <h1>🛡️ SOC Blue Team Academy</h1>
+                <p class="subtitle">PowerShell & CMD Mastery for Security Operations</p>
+            </div>
+            
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
 
-<div class="login-box">
-    <h2>SOC Enterprise Training</h2>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select id="role" required>
+                        <option value="">Select Your Role</option>
+                        <option value="Student">Student</option>
+                        <option value="Analyst">SOC Analyst</option>
+                        <option value="Instructor">Instructor</option>
+                    </select>
+                </div>
 
-    <input type="text" id="username" placeholder="Username">
+                <button type="submit" class="login-btn">Access Academy</button>
+            </form>
 
-    <select id="role">
-        <option value="Student">Student</option>
-        <option value="Analyst">SOC Analyst</option>
-    </select>
+            <div class="login-footer">
+                <p>🔐 Enterprise Security Training Platform</p>
+                <small>© 2026 SOC Blue Team Academy. All rights reserved.</small>
+            </div>
+        </div>
 
-    <button onclick="login()">Login</button>
-</div>
+        <div class="info-section">
+            <h2>Why SOC Blue Team Academy?</h2>
+            <ul class="features">
+                <li>✓ Comprehensive PowerShell & CMD Training</li>
+                <li>✓ Real-World SOC Scenarios</li>
+                <li>✓ Interactive Labs & Exercises</li>
+                <li>✓ Command Reference Guide</li>
+                <li>✓ Assessment Quizzes</li>
+                <li>✓ Progress Tracking</li>
+            </ul>
+        </div>
+    </div>
 
-<script src="auth.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

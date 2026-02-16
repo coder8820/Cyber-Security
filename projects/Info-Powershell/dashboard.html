@@ -1,40 +1,153 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>SOC Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SOC Blue Team Academy</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <div class="header-left">
+            <h1>🛡️ SOC Blue Team Academy</h1>
+        </div>
+        <div class="header-right">
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+            <span id="userName" class="user-name"></span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </header>
 
-<header>
-    <h2>SOC Enterprise Portal</h2>
-    <div>
-        <span id="userInfo"></span>
-        <button onclick="logout()">Logout</button>
+    <div class="dashboard-layout">
+        <nav class="sidebar">
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active" onclick="showSection('overview')">📊 Overview</a></li>
+                <li><a href="#lessons" class="nav-link" onclick="showSection('lessons')">📚 Lessons</a></li>
+                <li><a href="#labs" class="nav-link" onclick="showSection('labs')">🔧 Labs</a></li>
+                <li><a href="#reference" class="nav-link" onclick="showSection('reference')">📖 Command Reference</a></li>
+                <li><a href="#quiz" class="nav-link" onclick="showSection('quiz')">📝 Quiz</a></li>
+                <li><a href="#tools" class="nav-link" onclick="showSection('tools')">🛠️ Tools & Resources</a></li>
+                <li><a href="#analytics" class="nav-link" onclick="showSection('analytics')">📈 Analytics</a></li>
+                <li><a href="#certificates" class="nav-link" onclick="showSection('certificates')">🏆 Certificates</a></li>
+                <li><a href="#reports" class="nav-link" onclick="showSection('reports')">📄 Reports</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <h2>Welcome to Your Learning Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Lessons Completed</h3>
+                        <p class="stat-number" id="lessonsCompleted">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Quiz Score</h3>
+                        <p class="stat-number" id="quizScore">0%</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Lab Exercises</h3>
+                        <p class="stat-number" id="labsCompleted">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Commands Learned</h3>
+                        <p class="stat-number" id="commandsLearned">0</p>
+                    </div>
+                </div>
+
+                <div class="welcome-container">
+                    <h3>🎯 Learning Roadmap</h3>
+                    <div class="roadmap">
+                        <div class="roadmap-item">
+                            <span class="stage">Stage 1</span>
+                            <h4>Fundamentals</h4>
+                            <p>Learn PowerShell basics and Command Prompt essentials</p>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="stage">Stage 2</span>
+                            <h4>Networking & Services</h4>
+                            <p>Network troubleshooting and service management</p>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="stage">Stage 3</span>
+                            <h4>Event Log Analysis</h4>
+                            <p>Security event log investigations and analysis</p>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="stage">Stage 4</span>
+                            <h4>Advanced SOC Tasks</h4>
+                            <p>Real-world SOC scenarios and incident response</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lessons Section -->
+            <section id="lessons" class="content-section">
+                <h2>📚 Learning Modules</h2>
+                <div class="lessons-grid" id="lessonsContainer"></div>
+            </section>
+
+            <!-- Labs Section -->
+            <section id="labs" class="content-section">
+                <h2>🔧 Hands-On Labs</h2>
+                <div class="labs-grid" id="labsContainer"></div>
+            </section>
+
+            <!-- Reference Section -->
+            <section id="reference" class="content-section">
+                <h2>📖 Command Reference Guide</h2>
+                <div class="reference-container">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" onclick="filterCommands('all')">All Commands</button>
+                        <button class="filter-btn" onclick="filterCommands('powershell')">PowerShell</button>
+                        <button class="filter-btn" onclick="filterCommands('cmd')">CMD</button>
+                    </div>
+                    <div class="commands-list" id="commandsReference"></div>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section id="quiz" class="content-section">
+                <h2>📝 Assessment Quiz</h2>
+                <div class="quiz-container">
+                    <div id="quizArea"></div>
+                    <button onclick="submitQuiz()" class="submit-btn">Submit Quiz</button>
+                    <div id="result" class="result-container"></div>
+                </div>
+            </section>
+
+            <!-- Tools Section -->
+            <section id="tools" class="content-section">
+                <h2>🛠️ Tools & Resources</h2>
+                <div class="tools-grid" id="toolsContainer"></div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="content-section">
+                <h2>📈 Performance Analytics</h2>
+                <div class="analytics-container" id="analyticsContainer"></div>
+            </section>
+
+            <!-- Certificates Section -->
+            <section id="certificates" class="content-section">
+                <h2>🏆 Certificates & Achievements</h2>
+                <div class="certificates-container" id="certificatesContainer"></div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="content-section">
+                <h2>📄 Learning Reports</h2>
+                <div class="reports-container" id="reportsContainer"></div>
+            </section>
     </div>
-</header>
 
-<div class="layout">
-
-<aside class="sidebar">
-    <h3>Modules</h3>
-    <button onclick="loadCategory('network')">Network</button>
-    <button onclick="loadCategory('process')">Process</button>
-    <button onclick="loadCategory('logs')">Logs</button>
-    <button onclick="loadCategory('services')">Services</button>
-    <button onclick="window.location='quiz.html'">Quiz</button>
-</aside>
-
-<main>
-    <input type="text" id="search" placeholder="Search command...">
-    <div id="commandContainer"></div>
-</main>
-
-</div>
-
-<script src="auth.js"></script>
-<script src="data.js"></script>
-<script src="dashboard.js"></script>
-
+    <script src="data.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="quiz.js"></script>
+    <script src="analytics.js"></script>
+    <script src="certificates.js"></script>
+    <script src="reports.js"></script>
 </body>
 </html>
