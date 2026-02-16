@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+header {
+    background: #111827;
+    text-align: center;
+    padding: 20px;
+    border-bottom: 2px solid #1f2937;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background: #1e293b;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.sidebar a, .sidebar button {
+    display: block;
+    margin: 10px 0;
+    padding: 8px;
+    background: #334155;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sidebar a:hover, .sidebar button:hover {
+    background: #2563eb;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.command-card {
+    background: #1e293b;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.command-card:hover {
+    background: #334155;
+}
+
+.command-details {
+    display: none;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.code {
+    background: black;
+    color: #22c55e;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    font-family: monospace;
+}
+
+.scenario-box {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.hidden {
+    display: none;
+}
