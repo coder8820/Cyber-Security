@@ -1,46 +1,38 @@
-const contentArea = document.getElementById("contentArea");
-const searchInput = document.getElementById("searchInput");
+const container = document.getElementById("commandContainer");
+const search = document.getElementById("search");
 
-function showSection(category) {
-    renderCommands(category);
-}
+function loadCategory(category) {
+    container.innerHTML = "";
 
-function renderCommands(category) {
-    contentArea.innerHTML = "";
-
-    const filtered = commandDatabase.filter(cmd =>
-        cmd.category === category
-    );
+    const filtered = commandDatabase.filter(c =>
+        c.category === category);
 
     filtered.forEach(cmd => {
-        const card = document.createElement("div");
-        card.className = "command-card";
-        card.innerHTML = `
-            <div class="command-title">${cmd.name}</div>
-            <div>${cmd.description}</div>
-            <div class="command-code">${cmd.example}</div>
+        const div = document.createElement("div");
+        div.className = "command-card";
+        div.innerHTML = `
+            <strong>${cmd.name}</strong>
+            <p>${cmd.desc}</p>
+            <div class="code">${cmd.example}</div>
         `;
-        contentArea.appendChild(card);
+        container.appendChild(div);
     });
 }
 
-searchInput.addEventListener("keyup", () => {
-    const value = searchInput.value.toLowerCase();
+search.addEventListener("keyup", () => {
+    const value = search.value.toLowerCase();
+    container.innerHTML = "";
 
-    const filtered = commandDatabase.filter(cmd =>
-        cmd.name.toLowerCase().includes(value)
-    );
-
-    contentArea.innerHTML = "";
-
-    filtered.forEach(cmd => {
-        const card = document.createElement("div");
-        card.className = "command-card";
-        card.innerHTML = `
-            <div class="command-title">${cmd.name}</div>
-            <div>${cmd.description}</div>
-            <div class="command-code">${cmd.example}</div>
-        `;
-        contentArea.appendChild(card);
-    });
+    commandDatabase
+        .filter(cmd => cmd.name.toLowerCase().includes(value))
+        .forEach(cmd => {
+            const div = document.createElement("div");
+            div.className = "command-card";
+            div.innerHTML = `
+                <strong>${cmd.name}</strong>
+                <p>${cmd.desc}</p>
+                <div class="code">${cmd.example}</div>
+            `;
+            container.appendChild(div);
+        });
 });

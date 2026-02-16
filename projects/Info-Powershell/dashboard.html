@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SOC Enterprise Dashboard</title>
+    <title>SOC Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <h2>SOC Enterprise Training</h2>
+    <h2>SOC Enterprise Portal</h2>
     <div>
         <span id="userInfo"></span>
         <button onclick="logout()">Logout</button>
@@ -18,21 +18,18 @@
 
 <aside class="sidebar">
     <h3>Modules</h3>
-    <button onclick="showSection('network')">Network</button>
-    <button onclick="showSection('process')">Process</button>
-    <button onclick="showSection('logs')">Logs</button>
-    <button onclick="showSection('services')">Services</button>
+    <button onclick="loadCategory('network')">Network</button>
+    <button onclick="loadCategory('process')">Process</button>
+    <button onclick="loadCategory('logs')">Logs</button>
+    <button onclick="loadCategory('services')">Services</button>
+    <button onclick="window.location='quiz.html'">Quiz</button>
 </aside>
 
 <main>
-
-<div class="filter-bar">
-    <input type="text" id="searchInput" placeholder="Search command...">
-</div>
-
-<section id="contentArea"></section>
-
+    <input type="text" id="search" placeholder="Search command...">
+    <div id="commandContainer"></div>
 </main>
+
 </div>
 
 <script src="auth.js"></script>

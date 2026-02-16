@@ -1,5 +1,5 @@
 function login() {
-    const username = document.getElementById("username").value.trim();
+    const username = document.getElementById("username").value;
     const role = document.getElementById("role").value;
 
     if (!username) {
@@ -7,29 +7,24 @@ function login() {
         return;
     }
 
-    const user = {
-        username: username,
-        role: role
-    };
+    sessionStorage.setItem("socUser",
+        JSON.stringify({username, role}));
 
-    sessionStorage.setItem("socUser", JSON.stringify(user));
-    window.location.href = "dashboard.html";
+    window.location = "dashboard.html";
 }
 
 function logout() {
     sessionStorage.removeItem("socUser");
-    window.location.href = "index.html";
+    window.location = "index.html";
 }
 
 function checkAuth() {
     const user = sessionStorage.getItem("socUser");
-    if (!user) {
-        window.location.href = "index.html";
-    }
+    if (!user) window.location = "index.html";
     return JSON.parse(user);
 }
 
-if (window.location.pathname.includes("dashboard.html")) {
+if (document.getElementById("userInfo")) {
     const user = checkAuth();
     document.getElementById("userInfo").innerText =
         user.username + " (" + user.role + ")";
