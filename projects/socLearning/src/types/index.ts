@@ -69,3 +69,31 @@ export interface Achievement {
   desc: string
   unlocked: boolean
 }
+export interface Certification {
+  id: number
+  name: string
+  description: string
+  issuer: string
+  requirements: string[]
+  earnedAt?: Date
+  expiresAt?: Date
+  status: 'available' | 'in-progress' | 'earned' | 'expired'
+  progress: number
+  icon: string
+  prerequisites: string[]
+}
+
+export interface Report {
+  id: number
+  title: string
+  type: 'learning' | 'progress' | 'performance' | 'security'
+  description: string
+  generatedAt: Date
+  metrics: {
+    label: string
+    value: string | number
+    trend?: 'up' | 'down' | 'stable'
+  }[]
+  insights: string[]
+  recommendations: string[]
+}

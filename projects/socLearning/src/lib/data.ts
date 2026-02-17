@@ -497,3 +497,205 @@ export const quizData = [
     correct: 3
   },
 ]
+export const certificationsData = [
+  {
+    id: 1,
+    name: "SOC Fundamentals",
+    description: "Master the basics of Security Operations Center operations and procedures",
+    issuer: "Blue Team Academy",
+    requirements: [
+      "Complete 3 Fundamentals lessons",
+      "Score 70%+ on SOC Basics Quiz",
+      "Pass the hands-on lab assessment"
+    ],
+    status: "available",
+    progress: 0,
+    icon: "🛡️",
+    prerequisites: [],
+    earnedAt: undefined,
+    expiresAt: undefined
+  },
+  {
+    id: 2,
+    name: "Network Security Expert",
+    description: "Advanced network monitoring, threat detection, and incident response",
+    issuer: "Blue Team Academy",
+    requirements: [
+      "Complete Network Diagnostics lesson",
+      "Score 80%+ on Network Security Quiz",
+      "Complete 2 network security labs",
+      "Complete 5 advanced lessons"
+    ],
+    status: "in-progress",
+    progress: 60,
+    icon: "🌐",
+    prerequisites: ["SOC Fundamentals"],
+    earnedAt: undefined,
+    expiresAt: undefined
+  },
+  {
+    id: 3,
+    name: "PowerShell Automation Master",
+    description: "Expert-level PowerShell scripting for security automation and analysis",
+    issuer: "Blue Team Academy",
+    requirements: [
+      "Complete Advanced PowerShell Techniques",
+      "Complete Windows Forensics & Analysis",
+      "Pass 3 PowerShell automation projects",
+      "Score 90%+ on advanced quiz"
+    ],
+    status: "available",
+    progress: 0,
+    icon: "⚙️",
+    prerequisites: ["SOC Fundamentals", "Network Security Expert"],
+    earnedAt: undefined,
+    expiresAt: undefined
+  },
+  {
+    id: 4,
+    name: "Threat Hunter",
+    description: "Advanced threat hunting techniques and proactive cyber defense strategies",
+    issuer: "Blue Team Academy",
+    requirements: [
+      "Complete SOC Threat Analysis & Response",
+      "Complete 4 professional-level lessons",
+      "Pass threat hunting capstone project",
+      "Score 85%+ on threat analysis quiz"
+    ],
+    status: "available",
+    progress: 0,
+    icon: "🔍",
+    prerequisites: ["Network Security Expert"],
+    earnedAt: undefined,
+    expiresAt: undefined
+  },
+  {
+    id: 5,
+    name: "Digital Forensics Specialist",
+    description: "Master Windows forensics, evidence collection, and incident investigation",
+    issuer: "Blue Team Academy",
+    requirements: [
+      "Complete Windows Forensics & Analysis",
+      "Pass forensics lab simulations",
+      "Complete evidence collection project",
+      "Score 85%+ on forensics quiz"
+    ],
+    status: "available",
+    progress: 0,
+    icon: "🔬",
+    prerequisites: ["SOC Fundamentals"],
+    earnedAt: undefined,
+    expiresAt: undefined
+  },
+]
+
+export const reportsData = [
+  {
+    id: 1,
+    title: "Learning Progress Report",
+    type: "learning",
+    description: "Comprehensive overview of your learning journey and achievements",
+    generatedAt: new Date(),
+    metrics: [
+      { label: "Lessons Completed", value: 8, trend: "up" },
+      { label: "Labs Completed", value: 4, trend: "up" },
+      { label: "Average Quiz Score", value: "82%", trend: "up" },
+      { label: "Commands Mastered", value: 60, trend: "up" },
+      { label: "Hours Invested", value: 120, trend: "up" },
+      { label: "Current Streak", value: 12, trend: "stable" }
+    ],
+    insights: [
+      "You have completed 80% of Intermediate level content",
+      "Your quiz performance has improved by 15% in the last week",
+      "Strong progress in network diagnostics and PowerShell fundamentals",
+      "You're on track to earn Network Security Expert certification"
+    ],
+    recommendations: [
+      "Start Advanced PowerShell Techniques to prepare for Automation Master cert",
+      "Review network diagnostic commands to strengthen weak areas",
+      "Complete remaining labs to unlock professional-level courses",
+      "Practice daily to maintain your 12-day learning streak"
+    ]
+  },
+  {
+    id: 2,
+    title: "Skill Assessment Report",
+    type: "performance",
+    description: "Detailed analysis of your technical skills and competencies",
+    generatedAt: new Date(),
+    metrics: [
+      { label: "PowerShell Proficiency", value: "Intermediate", trend: "up" },
+      { label: "Network Knowledge", value: "Advanced", trend: "up" },
+      { label: "Command Execution", value: 85, trend: "up" },
+      { label: "Problem-Solving", value: 78, trend: "stable" },
+      { label: "Security Awareness", value: 90, trend: "up" },
+      { label: "Lab Performance", value: "Very Good", trend: "up" }
+    ],
+    insights: [
+      "Exceptional performance in security fundamentals and network analysis",
+      "Strong command-line skills with demonstrated proficiency in PowerShell",
+      "Above-average problem-solving abilities shown in lab assessments",
+      "Security mindset well-developed for SOC operations"
+    ],
+    recommendations: [
+      "Focus on advanced automation techniques to reach expert level",
+      "Dedicate more time to forensics topics for well-rounded expertise",
+      "Prepare for Network Security Expert certification exam",
+      "Consider specializing in threat hunting or forensics paths"
+    ]
+  },
+  {
+    id: 3,
+    title: "Certification Readiness Report",
+    type: "progress",
+    description: "Analysis of your progress toward available certifications",
+    generatedAt: new Date(),
+    metrics: [
+      { label: "SOC Fundamentals", value: "0%", trend: "stable" },
+      { label: "Network Security Expert", value: "60%", trend: "up" },
+      { label: "PowerShell Automation", value: "35%", trend: "up" },
+      { label: "Threat Hunter", value: "25%", trend: "stable" },
+      { label: "Digital Forensics", value: "15%", trend: "stable" },
+      { label: "Avg Certification Progress", value: "27%", trend: "up" }
+    ],
+    insights: [
+      "On track to earn Network Security Expert within 2-3 weeks",
+      "SOC Fundamentals can be completed with minimal additional effort",
+      "Need 2 more lessons for PowerShell Automation prerequisites",
+      "Forensics and Threat Hunting paths require more foundational work"
+    ],
+    recommendations: [
+      "Complete Network Security Expert exam in next 2 weeks",
+      "Immediately enroll in Windows Forensics lesson",
+      "Schedule practical labs for threat hunting preparation",
+      "Establish timeline for PowerShell Automation certification"
+    ]
+  },
+  {
+    id: 4,
+    title: "Security Operations Readiness",
+    type: "security",
+    description: "Assessment of your readiness for SOC operations roles",
+    generatedAt: new Date(),
+    metrics: [
+      { label: "Incident Response", value: 75, trend: "up" },
+      { label: "Network Monitoring", value: 88, trend: "up" },
+      { label: "Log Analysis", value: 70, trend: "stable" },
+      { label: "Threat Detection", value: 82, trend: "up" },
+      { label: "Tool Proficiency", value: 78, trend: "up" },
+      { label: "SOC Readiness Score", value: 79, trend: "up" }
+    ],
+    insights: [
+      "Demonstrated strong capabilities in network monitoring and threat detection",
+      "Log analysis and event correlation skills need further development",
+      "Tool proficiency above industry standard for entry-level SOC positions",
+      "Incident response procedures well understood"
+    ],
+    recommendations: [
+      "Complete advanced log analysis and SIEM training",
+      "Practice incident response scenarios in simulated environment",
+      "Earn Network Security Expert certification to strengthen resume",
+      "Gain hands-on experience with actual SOC tools and platforms"
+    ]
+  }
+]

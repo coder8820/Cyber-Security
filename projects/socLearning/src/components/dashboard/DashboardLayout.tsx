@@ -10,8 +10,10 @@ import ProfileSection from './sections/ProfileSection'
 import QuizSection from './sections/QuizSection'
 import RoadmapSection from './sections/RoadmapSection'
 import LessonsSection from './sections/LessonsSection'
+import CertificationsSection from './sections/CertificationsSection'
+import ReportsSection from './sections/ReportsSection'
 
-type Section = 'overview' | 'profile' | 'quiz' | 'roadmap' | 'lessons'
+type Section = 'overview' | 'profile' | 'quiz' | 'roadmap' | 'lessons' | 'certifications' | 'reports'
 
 export default function DashboardLayout({ user }: { user: User }) {
   const [activeSection, setActiveSection] = useState<Section>('overview')
@@ -39,6 +41,8 @@ export default function DashboardLayout({ user }: { user: User }) {
             { id: 'lessons', label: '📚 Lessons', icon: '📚' },
             { id: 'quiz', label: '📝 Quiz', icon: '📝' },
             { id: 'roadmap', label: '🎯 Roadmap', icon: '🎯' },
+            { id: 'certifications', label: '🏆 Certifications', icon: '🏆' },
+            { id: 'reports', label: '📈 Reports', icon: '📈' },
           ].map((item) => (
             <button
               key={item.id}
@@ -87,6 +91,8 @@ export default function DashboardLayout({ user }: { user: User }) {
           {activeSection === 'lessons' && <LessonsSection user={user} />}
           {activeSection === 'quiz' && <QuizSection user={user} />}
           {activeSection === 'roadmap' && <RoadmapSection user={user} />}
+          {activeSection === 'certifications' && <CertificationsSection />}
+          {activeSection === 'reports' && <ReportsSection />}
         </div>
       </main>
     </div>
