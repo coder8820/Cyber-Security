@@ -241,19 +241,19 @@ export class AuthSystem {
     }
 
     try {
-      // Reload users to ensure we have latest data
-      this.users = this.loadUsers()
+      // CRITICAL: Always reload from localStorage to check for duplicates
+      const currentUsers = this.loadUsers()
 
-      if (this.users.find((u) => u.username === username)) {
+      if (currentUsers.find((u) => u.username === username)) {
         return { success: false, message: 'Username already exists' }
       }
 
-      if (this.users.find((u) => u.email === email)) {
+      if (currentUsers.find((u) => u.email === email)) {
         return { success: false, message: 'Email already registered' }
       }
 
       const newUser: User = {
-        id: (Math.max(...this.users.map((u) => u.id), 0) + 1),
+        id: (Math.max(...currentUsers.map((u) => u.id), 0) + 1),
         username,
         email,
         password: this.hashPassword(password),
@@ -274,7 +274,9 @@ export class AuthSystem {
         streakDays: 0,
       }
 
-      this.users.push(newUser)
+      // Add to current users and save
+      currentUsers.push(newUser)
+      this.users = currentUsers
       this.saveUsers()
 
       this.addLoginAttempt(username, true)
@@ -292,12 +294,15 @@ export class AuthSystem {
     }
 
     try {
-      // IMPORTANT: Reload users from localStorage to ensure fresh data after logout
-      this.users = this.loadUsers()
+      // CRITICAL: Always reload users from localStorage to get fresh data
+      const loadedUsers = this.loadUsers()
       
-      // If no users in localStorage, reinitialize defaults
-      if (this.users.length === 0) {
+      // Only initialize defaults if localStorage is completely empty AND no custom users
+      if (loadedUsers.length === 0) {
         this.initializeDefaultUsers()
+        this.users = this.loadUsers() // Reload to get defaults if they were just created
+      } else {
+        this.users = loadedUsers
       }
 
       const user = this.users.find((u) => u.username === username)
@@ -586,6 +591,26 @@ export class AuthSystem {
     if (user.quizScore >= 80) achievements.push('📝 Knowledge Test')
     if (user.commandsLearned >= 50) achievements.push('🏆 Command Expert')
     return achievements
+  }
+
+  clearAllUsers(): void {
+    if (typeof window === 'undefined') return
+    try {
+      // Clear all users and related data from localStorage
+      localStorage.removeItem(STORAGE_KEY)
+      localStorage.removeItem(SESSION_KEY)
+      localStorage.removeItem(CURRENT_USER_KEY)
+      localStorage.removeItem(SESSION_EXPIRY_KEY)
+      localStorage.removeItem(LOGIN_HISTORY_KEY)
+      
+      // Reset in-memory users
+      this.users = []
+      this.sessions.clear()
+      
+      console.log('✅ All user data cleared successfully')
+    } catch (error) {
+      console.error('Error clearing user data:', error)
+    }
   }
 }
 

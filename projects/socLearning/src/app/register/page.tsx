@@ -44,7 +44,7 @@ export default function RegisterPage() {
       )
 
       if (result.success) {
-        router.push('/home')
+        router.push('/login')
       } else {
         setError(result.message)
       }

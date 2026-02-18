@@ -69,13 +69,8 @@ export default function EnrollmentModal({ course }: EnrollmentModalProps) {
         registerForm.role
       )
       if (result.success) {
-        // After successful registration, log them in and redirect
-        const loginResult = await login(registerForm.username, registerForm.password)
-        if (loginResult.success) {
-          window.location.href = '/home'
-        } else {
-          setError('Registration successful, but login failed. Please try logging in.')
-        }
+        // Registration successful - redirect to login page for user to login
+        window.location.href = '/login'
       } else {
         setError(result.message)
       }

@@ -81,6 +81,12 @@ export interface Certification {
   progress: number
   icon: string
   prerequisites: string[]
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert'
+  skills: string[]
+  validityYears?: number
+  credentialId?: string
+  careerImpact?: string
+  estimatedHours: number
 }
 
 export interface Report {

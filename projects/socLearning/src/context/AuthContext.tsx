@@ -61,9 +61,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   ) => {
     try {
       const result = authSystem.register(username, email, password, confirmPassword, role)
-      if (result.success && result.user) {
-        setUser(result.user)
-      }
+      // Do NOT auto-login on register - user must login manually
       return { success: result.success, message: result.message }
     } catch (error) {
       console.error('Register error:', error)
