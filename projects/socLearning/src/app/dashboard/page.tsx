@@ -1,6 +1,7 @@
 'use client'
 
 import { useAuth } from '@/context/AuthContext'
+import { DashboardThemeProvider } from '@/context/DashboardThemeContext'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import DashboardLayout from '@/components/dashboard/DashboardLayout'
@@ -27,5 +28,9 @@ export default function DashboardPage() {
     return null
   }
 
-  return <DashboardLayout user={user} />
+  return (
+    <DashboardThemeProvider>
+      <DashboardLayout user={user} />
+    </DashboardThemeProvider>
+  )
 }
